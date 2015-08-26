@@ -1,3 +1,8 @@
+require "./config/environment"
+require "./app/models/user"
+require "./app/models/translation"
+require "./app/models/google_translate"
+
 class ApplicationController < Sinatra::Base
   
   configure  do 
@@ -8,9 +13,15 @@ class ApplicationController < Sinatra::Base
   end 
   
   #   symbol used in hashes and calling certain methods 
+  
   get "/" do
+    @user = User.find_by({:id => session[:user_id]})
+    if @user 
+      redirect "/translate"
+    end
     erb :index
   end
+  
     
     
   get "/signup" do
@@ -32,7 +43,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/login" do
-    puts params
     @user = User.find_by({:username => params[:username],
       :password => params[:password]})
     if @user #exists
@@ -41,13 +51,23 @@ class ApplicationController < Sinatra::Base
     elsif @user == nil
       #give an error message
     end
-    redirect "/"
+    redirect "/translate"
   end
   
-   get "/logout" do
-     session.destroy
-    redirect "/"
+  get "/translate" do
+    translation = GoogleTranslate.new
+    @languages = translation.supported_languages
+    erb :translate
   end
+  
+  post "/translate" do
+    translation = GoogleTranslate.new
+    @languages = translation.supported_languages
+#     .translate(@original_language, @final_language, "text")
+    @translation = translation.translate(params[:original_language], params[:final_language], params[:original_text])
+    erb :translate
+  end
+    
   
 end
   

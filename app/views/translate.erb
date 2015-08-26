@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Polyglot</title>
+  <link rel="stylesheet" type="css/style.css" href="text/css">
+ </head>
+
+   <h1> Welcome to Polyglot </h1>
+  
+  <%=@languages%>
+  
+   <form action="/translate" method ="POST">
+     <input type="text" name="original_text" placeholder="Insert text to be translated">
+     <input type="text" name="original_language" placeholder="Insert language of text">
+     <input type="text" name="final_language" placeholder="Choose final language">
+     <input type="submit" value="Enter">
+   </form>
+   </html>
+
+<%if @translation%>
+<%=@translation[0][0][0]%>
+<%end%>
+
+<!--       <select class="form-control" name="languages" id="languages">
+          <option value="1">1 second</option>
+          <option value="2">2 seconds</option>
+          <option value="3">3 seconds</option>
+          <option value="4">4 seconds</option>
+          <option value="5">5 seconds</option>
+          <option value="6">6 seconds</option>
+          <option value="7">7 seconds</option>
+          <option value="8">8 seconds</option>
+          <option value="9">9 seconds</option>
+          <option value="10">10 seconds</option>
+        </select> -->
+
+
+      
