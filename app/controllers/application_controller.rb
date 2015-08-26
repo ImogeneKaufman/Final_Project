@@ -2,6 +2,7 @@ require "./config/environment"
 require "./app/models/user"
 require "./app/models/translation"
 require "./app/models/google_translate"
+require "pry"
 
 class ApplicationController < Sinatra::Base
   
@@ -62,10 +63,18 @@ class ApplicationController < Sinatra::Base
   post "/translate" do
     translation = GoogleTranslate.new
     @languages = translation.supported_languages
-#     .translate(@original_language, @final_language, "text")
-    @translation = translation.translate(params[:original_language], params[:final_language], params[:original_text])
+    @translation = translation.translate(params[:original_text], params[:original_language], params[:final_language])
+    binding.pry
+    translation = Translation.new ({
+      :user_id => session[:user_id],
+      :original_text => params[:original_text],
+      :final_text => @translation,
+      :original_language => params[:original_language],
+      :final_language => params[:final_language]
+      })
+    translation.save
     erb :translate
-  end
+  end    
     
   post "/logout" do
     redirect "/"

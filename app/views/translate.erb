@@ -36,10 +36,12 @@
   <%=@translation[0][0][0]%>
   <%end%>
   
-  <%@all_translations = Translation.all%>
-  <%@all_translations.each do |translation|%>
-  <%=translation.original_text%>
-  <%end%>
+  <ul>
+    <%@all_translations = Translation.all%>
+    <%@all_translations.each do |translation|%>
+    <li> Original Text: <%=Translation.find(translation.original_text)%> -New Text: <%=Translation.find(translation.new_text)%> - Original Language: <%=Translation.find(translation.original_language)%> - New Language: <%=Translation.find(translation.new_language)%></li>
+    <%end%>
+  </ul>
+<!--  where user_id is the same as the session user_id  -->
 
      </html>
-
