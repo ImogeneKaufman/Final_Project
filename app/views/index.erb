@@ -31,13 +31,12 @@
    
    <% end %>
    
-       <% if @user == nil %>
-   <% else %>
+       <% if @user %>
    <div style="position: absolute; bottom: 30; right: 0; width: 100px; text-align:right;">
-<form method="get" action="/logout">
-  <button type="submit">Log out</button>
-</form>
-     </div>
-<% end %>
- </body>
-  </html> 
+     <form method="post" action="/logout">
+       <button type="submit">Log out</button>
+     </form>
+   </div>
+   <% end %>
+  </body>
+</html> 

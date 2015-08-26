@@ -23,7 +23,6 @@ class ApplicationController < Sinatra::Base
   end
   
     
-    
   get "/signup" do
     erb :signup
   end
@@ -66,6 +65,10 @@ class ApplicationController < Sinatra::Base
 #     .translate(@original_language, @final_language, "text")
     @translation = translation.translate(params[:original_language], params[:final_language], params[:original_text])
     erb :translate
+  end
+    
+  post "/logout" do
+    redirect "/"
   end
     
   
