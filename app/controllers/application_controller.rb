@@ -3,11 +3,6 @@ require "./app/models/user"
 require "./app/models/translation"
 require "./app/models/google_translate"
 require "pry"
-require "espeak-ruby"
-
-Include ESpeak
-
-
 
 class ApplicationController < Sinatra::Base
   
@@ -79,6 +74,12 @@ class ApplicationController < Sinatra::Base
       :final_language => params[:final_language]
       })
     translation.save
+#     if @final_text 
+#       speech = Speech.new(@final_text, voice: @final_text => params[:final_language])
+#       speech.speak
+#     end
+#     Speech.new("Zdravo svete", voice: "sr", pitch: 90, speed: 200).speak
+#     User.find_by({:id => session[:user_id]})
     erb :translate
   end    
     
