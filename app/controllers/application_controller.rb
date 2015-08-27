@@ -3,6 +3,11 @@ require "./app/models/user"
 require "./app/models/translation"
 require "./app/models/google_translate"
 require "pry"
+require "espeak-ruby"
+
+Include ESpeak
+
+
 
 class ApplicationController < Sinatra::Base
   

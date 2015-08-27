@@ -6,6 +6,7 @@ gem "activerecord"
 gem "sinatra-activerecord"
 gem "rake"
 gem "google-translate"
+gem "espeak-ruby", require: "espeak"
 
 group :development do
   gem "pry"
@@ -13,7 +14,6 @@ group :development do
   gem "sqlite3"
   gem "shotgun"
 end
-
 
 # window.AudioContext = window.AudioContext ||
 #                       window.webkitAudioContext;
