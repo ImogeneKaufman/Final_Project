@@ -36,14 +36,7 @@
      </form>
    </div>
    <% end %>
-  <br>
-  <br>
-    <%if @final_text%>
-  <%=@final_text[0][0][0]%>
-  <%end%>
-  <br>
-  <br>
-  
+    
     <form action="/translate" method ="POST">
       <select name="original_language">
         <option selected disabled>Language of text</option>
@@ -61,7 +54,7 @@
       
       <input type="text" name="original_text" placeholder="Insert text to be translated">
       
-      <select name="original_text">
+      <select name="original_text" size ="10">
         <option selected disabled>Previous Translations</option>
         <%@all_translations = Translation.where(user_id: session[:user_id])%>
         <%@all_translations.each do |translation|%>
@@ -72,7 +65,9 @@
       <input type="submit" value="Enter">
    </form>
   
-
+  <%if @final_text%>
+  <%=@final_text[0][0][0]%>
+  <%end%>
   
   
 <!--  where user_id is the same as the session user_id  -->
