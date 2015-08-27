@@ -55,20 +55,21 @@ class ApplicationController < Sinatra::Base
   end
   
   get "/translate" do
-    translation = GoogleTranslate.new
-    @languages = translation.supported_languages
+    google_translate = GoogleTranslate.new
+    @languages = google_translate.supported_languages
     erb :translate
   end
   
   post "/translate" do
-    translation = GoogleTranslate.new
-    @languages = translation.supported_languages
-    @translation = translation.translate(params[:original_text], params[:original_language], params[:final_language])
-    binding.pry
+    google_translate = GoogleTranslate.new
+    @languages = google_translate.supported_languages
+    @final_text = google_translate.translate(params[:original_language], params[:final_language], params[:original_text])
+     puts "Final text 1:"
+    puts @final_text[0][0][0]
     translation = Translation.new ({
       :user_id => session[:user_id],
       :original_text => params[:original_text],
-      :final_text => @translation,
+      :final_text => @final_text,
       :original_language => params[:original_language],
       :final_language => params[:final_language]
       })
@@ -77,7 +78,14 @@ class ApplicationController < Sinatra::Base
   end    
     
   post "/logout" do
-    redirect "/"
+    @user = User.find_by({:username => params[:username],
+      :password => params[:password]})
+    if @user 
+      session[:user_id] = nil
+      redirect "/"
+    elsif @user == nil
+    end
+    
   end
     
   

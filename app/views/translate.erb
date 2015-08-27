@@ -8,40 +8,68 @@
 
    <h1> Welcome to Polyglot </h1>
   
-  <% if @user %>
-    <form method="post" action="/logout">
-      <button type="submit">Log out</button>
-    </form>
-    <%end%>
+<% if session[:user_id] == nil %>
+   <div style="position: absolute; bottom: 300; right: 0; width: 100px; text-align:right;}">
+     <form method="get" action="/signup" style=>
+       <button type="submit">Sign up for Polyglot!</button>
+     </form>
+   </div>
+   <% else %>
+   
+   <% end %>
+   
+<% if session[:user_id] == nil %>
+   <div style="position: absolute; bottom: 0; right: 0; width: 100px; text-align:right;">
+<form method="get" action="/login">
+  <button type="submit">Log in to Polyglot!</button>
+</form>
+     </div>
+   <% else %>
+   
+   <% end %>
+   
+  <% if session[:user_id] %>
+   <div style="position: absolute; bottom: 30; right: 0; width: 100px; text-align:right;">
+     <form method="post" action="/logout">
+       <button type="submit">Log out</button>
+     </form>
+   </div>
+   <% end %>
     
     <form action="/translate" method ="POST">
+      <select name="original_language">
+        <option selected disabled>Language of text</option>
+        <%@languages[0].each do |language|%>
+          <option value="<%=language[1]%>"><%=language[2]%></option>
+        <%end%>
+      </select>
   
-     <select name="original_language">
-    <%@languages[0].each do |language|%>
-    <option value="<%=language[1]%>"><%=language[2]%></option>
-    <%end%>
-  </select>
-  
-  <select name="final_language">
-    <%@languages[0].each do |language|%>
-    <option value="<%=language[1]%>"><%=language[2]%></option>
-    <%end%>
-  </select>
-
-     <input type="text" name="original_text" placeholder="Insert text to be translated">
-     <input type="submit" value="Enter">
+      <select name="final_language">
+        <option selected disabled>Desired Language</option>
+        <%@languages[0].each do |language|%>
+          <option value="<%=language[1]%>"><%=language[2]%></option>
+        <%end%>
+      </select>
+      
+      <input type="text" name="original_text" placeholder="Insert text to be translated">
+      
+      <select name="original_text">
+        <option selected disabled>Previous Translations</option>
+        <%@all_translations = Translation.all%>
+        <%@all_translations.each do |translation|%>
+          <option value="<%=translation.original_text%>"> Original Text: <%=translation.original_text%> </option>
+        <%end%>
+      </select>
+      
+      <input type="submit" value="Enter">
    </form>
   
-  <%if @translation%>
-  <%=@translation[0][0][0]%>
+  <%if @final_text%>
+  <%=@final_text[0][0][0]%>
   <%end%>
   
-  <ul>
-    <%@all_translations = Translation.all%>
-    <%@all_translations.each do |translation|%>
-    <li> Original Text: <%=Translation.find(translation.original_text)%> -New Text: <%=Translation.find(translation.new_text)%> - Original Language: <%=Translation.find(translation.original_language)%> - New Language: <%=Translation.find(translation.new_language)%></li>
-    <%end%>
-  </ul>
+  
 <!--  where user_id is the same as the session user_id  -->
+    
 
-     </html>
+</html>
