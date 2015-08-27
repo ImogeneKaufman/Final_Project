@@ -74,10 +74,10 @@ class ApplicationController < Sinatra::Base
       :final_language => params[:final_language]
       })
     translation.save
-    if @final_text 
-      speech = Speech.new(@final_text, voice: @final_text => params[:final_language])
-      speech.speak
-    end
+#     if @final_text 
+#       speech = Speech.new(@final_text, voice: @final_text => params[:final_language])
+#       speech.speak
+#     end
     erb :translate
   end    
     
