@@ -8,26 +8,27 @@
 
    <h1> Welcome to Polyglot </h1>
   
-<% if session[:user_id] == nil %>
+<% if !session[:user_id] %>
    <div style="position: absolute; bottom: 300; right: 0; width: 100px; text-align:right;}">
      <form method="get" action="/signup" style=>
        <button type="submit">Sign up for Polyglot!</button>
      </form>
-   </div>
-   <% else %>
-   
+  </div>
    <% end %>
    
-<% if session[:user_id] == nil %>
+  <% if !session[:user_id] %>
    <div style="position: absolute; bottom: 0; right: 0; width: 100px; text-align:right;">
 <form method="get" action="/login">
   <button type="submit">Log in to Polyglot!</button>
 </form>
      </div>
    <% else %>
-   
-   <% end %>
-   
+  <% end %>
+  
+  <% if session[:user_id] %>
+  Logged in as <%=User.find_by({:id => session[:user_id]}).username %>
+  <% end %>
+
   <% if session[:user_id] %>
    <div style="position: absolute; bottom: 30; right: 0; width: 100px; text-align:right;">
      <form method="post" action="/logout">
@@ -55,7 +56,7 @@
       
       <select name="original_text">
         <option selected disabled>Previous Translations</option>
-        <%@all_translations = Translation.all%>
+        <%@all_translations = Translation.where(user_id: session[:user_id])%>
         <%@all_translations.each do |translation|%>
           <option value="<%=translation.original_text%>"> Original Text: <%=translation.original_text%> </option>
         <%end%>

@@ -78,14 +78,10 @@ class ApplicationController < Sinatra::Base
   end    
     
   post "/logout" do
-    @user = User.find_by({:username => params[:username],
-      :password => params[:password]})
-    if @user 
+    if session[:user_id] 
       session[:user_id] = nil
-      redirect "/"
-    elsif @user == nil
     end
-    
+    redirect "/"
   end
     
   
