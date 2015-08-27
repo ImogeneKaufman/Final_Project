@@ -19,6 +19,7 @@ GEM
     builder (3.2.2)
     coderay (1.1.0)
     curb (0.8.8)
+    espeak-ruby (1.0.2)
     google-translate (1.1.2)
       json_pure (~> 1.8)
       resource_accessor (~> 1.2)
@@ -77,6 +78,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  espeak-ruby
   google-translate
   pry
   rake
