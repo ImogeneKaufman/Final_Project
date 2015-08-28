@@ -2,7 +2,10 @@ black {
   color: black
 }
 white {
-  background-color: purple
+  background-color: white
+}
+size {
+  font-size: 200%
 }
 right {position: absolute;
   left: 720px;

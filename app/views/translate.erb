@@ -10,23 +10,14 @@
   
     <center><form action="/translate" method ="POST">
       <black><span class="select-wrapper"><select name="original_language"> 
-        <option selected disabled>Language of text</option>
+        <option selected disabled>Starting Language</option>
         <%@languages[0].each do |language|%>
           <option value="<%=language[1]%>"><%=language[2]%></option>
         <%end%>
         </select></span></black>
-  
-      <black><select name="final_language">
-        <option selected disabled>Desired Language</option>
-        <%@languages[0].drop(1).each do |language|%>
-          <option value="<%=language[1]%>"><%=language[2]%></option>
-        <%end%>
-      </select></black>
       
-      <input type="text" name="original_text" placeholder="Insert text to be translated">
-      
-      
-      <black><select name="original_text">
+      <black><input type="text" name="original_text" placeholder="Insert text to be translated"><black>
+        <black><select name="original_text">
         <option selected disabled>Previous Translations</option>
         <%x=1%>
         <%@all_translations = Translation.where(user_id: session[:user_id])%>
@@ -37,6 +28,18 @@
           <%end%>
         <%end%>
       </select></black>
+        
+      <black><select name="final_language">
+        <option selected disabled>Desired Language</option>
+        <%@languages[0].drop(1).each do |language|%>
+          <option value="<%=language[1]%>"><%=language[2]%></option>
+        <%end%>
+      </select></black>
+      
+      
+      
+      
+      
       
       <black><input type="submit" value="Enter"></black>
    </form><center>
