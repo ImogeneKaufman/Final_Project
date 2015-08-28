@@ -1,32 +1,6 @@
    <h1> Welcome to Polyglot </h1>
   
-<% if !session[:user_id] %>
-   <div style="position: absolute; bottom: 300; right: 0; width: 100px; text-align:right;}">
-     <form method="get" action="/signup" style=>
-       <button type="submit">Sign up for Polyglot!</button>
-     </form>
-  </div>
-   <% end %>
-   
-  <% if !session[:user_id] %>
-   <div style="position: absolute; bottom: 0; right: 0; width: 100px; text-align:right;">
-<form method="get" action="/login">
-  <button type="submit">Log in to Polyglot!</button>
-</form>
-     </div>
-  <% end %>
-  
-  <% if session[:user_id] %>
-  Logged in as <%=User.find_by({:id => session[:user_id]}).username %>
-  <% end %>
 
-  <% if session[:user_id] %>
-   <div style="position: absolute; bottom: 30; right: 0; width: 100px; text-align:right;">
-     <form method="post" action="/logout">
-       <button type="submit">Log out</button>
-     </form>
-   </div>
-   <% end %>
   <br>
   <br>
     <%if @final_text%>
