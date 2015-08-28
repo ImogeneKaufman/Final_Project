@@ -2,7 +2,7 @@ require "./config/environment"
 require "./app/models/user"
 require "./app/models/translation"
 require "./app/models/google_translate"
-require "pry"
+# require "pry"
 
 class ApplicationController < Sinatra::Base
   
