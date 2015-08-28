@@ -1,3 +1,41 @@
+black {
+  color: black
+}
+white {
+  background-color: purple
+}
+right {position: absolute;
+  left: 720px;
+  width: 150px;
+  padding: 0px;}
+
+less-right {position: absolute;
+  left: 640px;
+  width: 150px;
+  padding: 0px;}
 body {
   background-color: #000000;
+  color: white
+}
+
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px
+}
+little_img.displayed {
+  width: 200px 
+}
+
+center {
+  text-align: center
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+.btn {
+   border-radius: 0;
 }

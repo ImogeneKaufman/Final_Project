@@ -8,26 +8,27 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Polyglot</a>
+      <img class="navbar-brand" src="css/images/little-logo.jpg" alt="Little Polyglot" class="displayed">
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" align="right" >
-      <ul class="nav navbar-nav">
+      <right><black><ul class="nav navbar-nav">
         <% if session[:user_id] %>
         <li><a href="/logout">Log out</a></li>
         <%end%>
-      </ul>
-      <ul class="nav navbar-nav">
+        </ul></black></right>
+      <right><ul class="nav navbar-nav">
         <% if !session[:user_id] %>
           <li><a method="get" action="/login" type="submit" href="/login">Log in</a></li>
         <%end%>
-      </ul>
+      </ul></right>
       <ul class="nav navbar-nav">
         <% if !session[:user_id] %>
           <li><a method="get" action="/signup" type="submit" href="/signup">Sign up</a></li>
           <%end%>
-      </ul>  
+      </ul>
 
+  </div>
   </div>
 </nav>

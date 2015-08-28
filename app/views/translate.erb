@@ -1,5 +1,5 @@
-<h1> Welcome to Polyglot </h1>
-
+<align>
+<img src="css/images/polyglot.jpg" alt="Polyglot" class="displayed">
   <br>
   <br>
     <%if @final_text%>
@@ -8,24 +8,25 @@
   <br>
   <br>
   
-    <form action="/translate" method ="POST">
-      <select name="original_language">
+    <center><form action="/translate" method ="POST">
+      <black><span class="select-wrapper"><select name="original_language"> 
         <option selected disabled>Language of text</option>
         <%@languages[0].each do |language|%>
           <option value="<%=language[1]%>"><%=language[2]%></option>
         <%end%>
-      </select>
+        </select></span></black>
   
-      <select name="final_language">
+      <black><select name="final_language">
         <option selected disabled>Desired Language</option>
         <%@languages[0].drop(1).each do |language|%>
           <option value="<%=language[1]%>"><%=language[2]%></option>
         <%end%>
-      </select>
+      </select></black>
       
       <input type="text" name="original_text" placeholder="Insert text to be translated">
       
-      <select name="original_text">
+      
+      <black><select name="original_text">
         <option selected disabled>Previous Translations</option>
         <%x=1%>
         <%@all_translations = Translation.where(user_id: session[:user_id])%>
@@ -35,9 +36,11 @@
             <option value="<%=translation.original_text%>"> Original Text: <%=translation.original_text%> </option>
           <%end%>
         <%end%>
-      </select>
+      </select></black>
       
-      <input type="submit" value="Enter">
-   </form>
+      <black><input type="submit" value="Enter"></black>
+   </form><center>
+ 
 
+  <align>
 

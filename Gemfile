@@ -7,6 +7,7 @@ gem "sinatra-activerecord"
 gem "rake"
 gem "google-translate"
 gem "espeak-ruby", require: "espeak"
+gem 'pg'
 
 group :development do
   gem "pry"
